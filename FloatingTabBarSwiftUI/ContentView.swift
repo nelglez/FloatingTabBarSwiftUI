@@ -9,8 +9,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var selected = 0
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack(alignment: .bottom) {
+            
+            VStack {
+                if self.selected == 0 {
+                    
+                        GeometryReader { _ in
+                            Text("Home")
+                        }
+                    
+                } else if self.selected == 1 {
+                    GeometryReader { _ in
+                        Text("Wishlist")
+                    }
+                    
+                } else {
+                    GeometryReader { _ in
+                        Text("Cart")
+                    }
+                }
+            }.background(Color("Color")).edgesIgnoringSafeArea(.all)
+            
+            FloatingTabBarView(selected: self.$selected)
+        }
     }
 }
 
